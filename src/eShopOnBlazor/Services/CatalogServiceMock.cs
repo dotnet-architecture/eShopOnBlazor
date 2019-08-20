@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using eShopLegacyBlazor.Models;
-using eShopLegacyBlazor.Models.Infrastructure;
-using eShopLegacyBlazor.ViewModel;
+using eShopOnBlazor.Models;
+using eShopOnBlazor.Models.Infrastructure;
+using eShopOnBlazor.ViewModel;
 
-namespace eShopLegacyBlazor.Services
+namespace eShopOnBlazor.Services
 {
     public class CatalogServiceMock : ICatalogService
     {

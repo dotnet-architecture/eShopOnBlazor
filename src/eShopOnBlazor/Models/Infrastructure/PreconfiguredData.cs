@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace eShopLegacyBlazor.Models.Infrastructure
+namespace eShopOnBlazor.Models.Infrastructure
 {
     public static class PreconfiguredData
     {

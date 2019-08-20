@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using eShopLegacyBlazor.Models;
+using eShopOnBlazor.Models;
 using System;
-using eShopLegacyBlazor.ViewModel;
+using eShopOnBlazor.ViewModel;
 
-namespace eShopLegacyBlazor.Services
+namespace eShopOnBlazor.Services
 {
     public interface ICatalogService : IDisposable
     {

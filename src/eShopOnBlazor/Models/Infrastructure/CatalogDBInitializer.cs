@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace eShopLegacyBlazor.Models.Infrastructure
+namespace eShopOnBlazor.Models.Infrastructure
 {
     public class CatalogDBInitializer : CreateDatabaseIfNotExists<CatalogDBContext>
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace eShopLegacyBlazor.Data
+namespace eShopOnBlazor.Data
 {
     public class WeatherForecast
     {

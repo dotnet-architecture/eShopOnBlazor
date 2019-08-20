@@ -1,9 +1,9 @@
 ﻿using Autofac;
-using eShopLegacyBlazor.Models;
-using eShopLegacyBlazor.Models.Infrastructure;
-using eShopLegacyBlazor.Services;
+using eShopOnBlazor.Models;
+using eShopOnBlazor.Models.Infrastructure;
+using eShopOnBlazor.Services;
 
-namespace eShopLegacyBlazor.Modules
+namespace eShopOnBlazor.Modules
 {
     public class ApplicationModule : Module
     {

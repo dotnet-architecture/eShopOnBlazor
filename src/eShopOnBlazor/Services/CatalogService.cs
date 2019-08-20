@@ -1,12 +1,12 @@
 ﻿using System;
-using eShopLegacyBlazor.Models;
+using eShopOnBlazor.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using eShopLegacyBlazor.ViewModel;
+using eShopOnBlazor.ViewModel;
 
-namespace eShopLegacyBlazor.Services
+namespace eShopOnBlazor.Services
 {
     public class CatalogService : ICatalogService
     {

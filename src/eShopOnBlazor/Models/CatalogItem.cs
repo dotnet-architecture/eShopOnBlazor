@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace eShopLegacyBlazor.Models
+namespace eShopOnBlazor.Models
 {
     public class CatalogItem
     {

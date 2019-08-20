@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eShopLegacyBlazor.Data
+namespace eShopOnBlazor.Data
 {
     public class WeatherForecastService
     {

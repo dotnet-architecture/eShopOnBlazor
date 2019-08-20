@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace eShopLegacyBlazor.Models
+namespace eShopOnBlazor.Models
 {
     public class CatalogType
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace eShopLegacyBlazor.ViewModel
+namespace eShopOnBlazor.ViewModel
 {
     public class PaginatedItemsViewModel<TEntity> where TEntity : class
     {

@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using eShopLegacyBlazor.Data;
+using eShopOnBlazor.Data;
 
-namespace eShopLegacyBlazor
+namespace eShopOnBlazor
 {
     public class Startup
     {
