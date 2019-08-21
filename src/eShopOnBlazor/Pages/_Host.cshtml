@@ -7,13 +7,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eShopOnBlazor</title>
+    <title>Catalog manager (Blazor)</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/base.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <app>@(await Html.RenderComponentAsync<App>())</app>
+    <app>@(await Html.RenderStaticComponentAsync<App>())</app>
 
     <script src="_framework/blazor.server.js"></script>
 </body>

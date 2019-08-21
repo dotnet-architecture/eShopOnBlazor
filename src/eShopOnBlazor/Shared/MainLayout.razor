@@ -1,15 +1,45 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
+<header class="navbar navbar-light navbar-static-top">
+    <div class="esh-header-brand">
+        <a href="">
+            <img src="/images/brand.png" />
+        </a>
+    </div>
+</header>
+
+<section class="esh-app-hero">
+    <div class="container esh-header">
+        <h1 class="esh-header-title">Catalog manager <span>(Blazor)</span></h1>
+    </div>
+</section>
+
+<div>
+    @Body
 </div>
 
-<div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/en-us/aspnet/" target="_blank">About</a>
+<footer class="esh-app-footer">
+    <div class="container">
+        <article class="row">
+            <section class="col-sm-6">
+                <img class="esh-app-footer-brand" src="/images/brand_dark.png" />
+            </section>
+            <section class="col-sm-6">
+                <img class="esh-app-footer-text hidden-xs" src="/images/main_footer_text.png" width="335" height="26" alt="footer text image" />
+                <br />
+                <small style="color:white">@Environment.MachineName, @SessionStartTime</small>
+            </section>
+        </article>
     </div>
+</footer>
 
-    <div class="content px-4">
-        @Body
-    </div>
-</div>
+@code {
+    DateTime SessionStartTime;
+
+    protected override void OnInitialized() 
+    {
+        SessionStartTime = DateTime.Now;
+    }
+}
+
+
