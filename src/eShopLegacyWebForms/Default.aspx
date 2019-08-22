@@ -51,7 +51,6 @@
                 <tr>
                     <td>
                         <image class="esh-thumbnail" src='/Pics/<%#:Item.PictureFileName%>' />
-                        </a>
                     </td>
                     <td>
                         <p>

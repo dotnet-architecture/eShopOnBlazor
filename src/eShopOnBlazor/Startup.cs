@@ -9,17 +9,23 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using eShopOnBlazor.Data;
+using eShopOnBlazor.Models;
+using eShopOnBlazor.Models.Infrastructure;
+using eShopOnBlazor.Services;
 
 namespace eShopOnBlazor
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
+
+        public IWebHostEnvironment Env { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -27,13 +33,26 @@ namespace eShopOnBlazor
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            
+            if (Env.IsDevelopment())
+            {
+                services.AddSingleton<ICatalogService, CatalogServiceMock>();
+            }
+            else
+            {
+                services.AddScoped<ICatalogService, CatalogService>();
+            }
+
+            services.AddScoped<CatalogDBContext>(
+                serviceProvider => new CatalogDBContext(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<CatalogDBInitializer>();
+            services.AddSingleton<CatalogItemHiLoGenerator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (Env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

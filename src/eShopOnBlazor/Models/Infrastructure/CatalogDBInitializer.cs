@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
@@ -8,6 +10,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+
 
 namespace eShopOnBlazor.Models.Infrastructure
 {
@@ -19,13 +22,17 @@ namespace eShopOnBlazor.Models.Infrastructure
         private const string CatalogBrandHiLoSequenceScript = @"Models\Infrastructure\dbo.catalog_brand_hilo.Sequence.sql";
         private const string CatalogTypeHiLoSequenceScript = @"Models\Infrastructure\dbo.catalog_type_hilo.Sequence.sql";
 
-        private CatalogItemHiLoGenerator indexGenerator;
+        private CatalogItemHiLoGenerator _indexGenerator;
+        private readonly IConfiguration _config;
+        private readonly IWebHostEnvironment _env;
         private bool useCustomizationData;
 
-        public CatalogDBInitializer(CatalogItemHiLoGenerator indexGenerator)
+        public CatalogDBInitializer(CatalogItemHiLoGenerator indexGenerator, IConfiguration config, IWebHostEnvironment env)
         {
-            this.indexGenerator = indexGenerator;
-            useCustomizationData = bool.Parse(ConfigurationManager.AppSettings["UseCustomizationData"]);
+            _indexGenerator = indexGenerator;
+            _config = config;
+            _env = env;
+            useCustomizationData = _config.GetValue<bool>("UseCustomizationData");
         }
 
         protected override void Seed(CatalogDBContext context)
@@ -82,7 +89,7 @@ namespace eShopOnBlazor.Models.Infrastructure
 
             foreach (var item in preconfiguredItems)
             {
-                var sequenceId = indexGenerator.GetNextSequenceValue(context);
+                var sequenceId = _indexGenerator.GetNextSequenceValue(context);
                 item.Id = sequenceId;
                 context.CatalogItems.Add(item);
             }
@@ -90,12 +97,7 @@ namespace eShopOnBlazor.Models.Infrastructure
             context.SaveChanges();
         }
 
-        private static string GetContentRootPath()
-        {
-            // TODO: Replace HostingEnvironment
-            //return = HostingEnvironment.ApplicationPhysicalPath;
-            return null;
-        }
+        private string GetContentRootPath() => _env.ContentRootPath;
 
         private IEnumerable<CatalogType> GetCatalogTypesFromFile()
         {
@@ -133,7 +135,7 @@ namespace eShopOnBlazor.Models.Infrastructure
             };
         }
 
-        static IEnumerable<CatalogBrand> GetCatalogBrandsFromFile()
+        IEnumerable<CatalogBrand> GetCatalogBrandsFromFile()
         {
             var contentRootPath = GetContentRootPath();
             string csvFileCatalogBrands = Path.Combine(contentRootPath, "Setup", "CatalogBrands.csv");
@@ -169,7 +171,7 @@ namespace eShopOnBlazor.Models.Infrastructure
             };
         }
 
-        static IEnumerable<CatalogItem> GetCatalogItemsFromFile(CatalogDBContext context)
+        IEnumerable<CatalogItem> GetCatalogItemsFromFile(CatalogDBContext context)
         {
             var contentRootPath = GetContentRootPath();
             string csvFileCatalogItems = Path.Combine(contentRootPath, "Setup", "CatalogItems.csv");
