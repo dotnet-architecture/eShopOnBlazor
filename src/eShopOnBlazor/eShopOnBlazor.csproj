@@ -9,6 +9,10 @@
     <None Remove="Models\Infrastructure\dbo.catalog_brand_hilo.Sequence.sql" />
     <None Remove="Models\Infrastructure\dbo.catalog_hilo.Sequence.sql" />
     <None Remove="Models\Infrastructure\dbo.catalog_type_hilo.Sequence.sql" />
+    <None Remove="Setup\CatalogBrands.csv" />
+    <None Remove="Setup\CatalogItems.csv" />
+    <None Remove="Setup\CatalogItems.zip" />
+    <None Remove="Setup\CatalogTypes.csv" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +25,10 @@
     <Content Include="Models\Infrastructure\dbo.catalog_type_hilo.Sequence.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Setup\CatalogBrands.csv" />
+    <Content Include="Setup\CatalogItems.csv" />
+    <Content Include="Setup\CatalogItems.zip" />
+    <Content Include="Setup\CatalogTypes.csv" />
   </ItemGroup>
 
   <ItemGroup>
