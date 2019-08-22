@@ -3,108 +3,97 @@
 @using Microsoft.Extensions.Logging
 
 @inject ICatalogService CatalogService
-@*<%@ Page Title="Delete" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Delete.aspx.cs" Inherits="eShopLegacyWebForms.Catalog.Delete" %>
 
-<asp:Content ID="Delete" ContentPlaceHolderID="MainContent" runat="server">
+<div class="container">
+    <div class="row">
+        <img class="col-md-6 esh-picture" src="@($"/Pics/{_item.PictureFileName}")">
 
-    <h2 class="esh-body-title">Delete</h2>
+        <dl class="col-md-6 dl-horizontal">
+            <dt>
+                Name
+            </dt>
 
-    <div class="container">
-        <h3>Are you sure you want to delete this?</h3>
-        <div class="row">
-            <asp:Image runat="server" CssClass="col-md-6 esh-picture" ImageUrl='<%#"/Pics/" + productToDelete.PictureFileName%>' />
-            <dl class="col-md-6 dl-horizontal">
-                <dt>
-                    Name
-                </dt>
+            <dd>
+                @_item.Name
+            </dd>
 
-                <dd>
-                    <asp:Label runat="server" Text='<%#productToDelete.Name%>' />
-                </dd>
+            <dt>
+                Description
+            </dt>
 
-                <dt>
-                    Description
-                </dt>
+            <dd>
+                @_item.Description
+            </dd>
 
-                <dd>
-                    <asp:Label runat="server" Text='<%#productToDelete.Description%>' />
-                </dd>
+            <dt>
+                Brand
+            </dt>
 
-                <dt>
-                    Brand
-                </dt>
+            <dd>
+                @_item.CatalogBrand.Brand
+            </dd>
 
-                <dd>
-                    <asp:Label runat="server" Text='<%#productToDelete.CatalogBrand.Brand%>' />
-                </dd>
+            <dt>
+                Type
+            </dt>
 
-                <dt>
-                    Type
-                </dt>
+            <dd>
+                @_item.CatalogType.Type
+            </dd>
+            <dt>
+                Price
+            </dt>
 
-                <dd>
-                    <asp:Label runat="server" Text='<%#productToDelete.CatalogType.Type%>' />
-                </dd>
-                <dt>
-                    Price
-                </dt>
+            <dd>
+                @_item.Price
+            </dd>
 
-                <dd>
-                    <asp:Label CssClass="esh-price" runat="server" Text='<%#productToDelete.Price%>' />
-                </dd>
+            <dt>
+                Picture name
+            </dt>
 
-                <dt>
-                    Picture name
-                </dt>
+            <dd>
+                @_item.PictureFileName
+            </dd>
 
-                <dd>
-                    <asp:Label runat="server" Text='<%#productToDelete.PictureFileName%>' />
-                </dd>
+            <dt>
+                Stock
+            </dt>
 
-                <dt>
-                    Stock
-                </dt>
+            <dd>
+                @_item.AvailableStock
+            </dd>
 
-                <dd>
-                    <asp:Label runat="server" Text='<%#productToDelete.AvailableStock%>' />
-                </dd>
+            <dt>
+                Restock
+            </dt>
 
-                <dt>
-                    Restock
-                </dt>
+            <dd>
+                @_item.RestockThreshold
+            </dd>
 
-                <dd>
-                    <asp:Label runat="server" Text='<%#productToDelete.RestockThreshold%>' />
-                </dd>
+            <dt>
+                Max stock
+            </dt>
 
-                <dt>
-                    Max stock
-                </dt>
+            <dd>
+                @_item.MaxStockThreshold
+            </dd>
 
-                <dd>
-                    <asp:Label runat="server" Text='<%#productToDelete.MaxStockThreshold%>' />
-                </dd>
+            <dt></dt>
 
-                <dt></dt>
+            <dd class="text-right esh-button-actions">
+                <a href="/" class="btn esh-button esh-button-secondary">
+                    [ Cancel ]
+                </a>
+                <button class="btn esh-button esh-button-primary" @onclick="Delete_Click">
+                    [ Delete ]
+                </button>
+            </dd>
 
-                <dd class="text-right esh-button-actions">
-                    <a runat="server" href="~" class="btn esh-button esh-button-secondary">
-                        [ Cancel ]
-                    </a>
-                    <asp:Button CssClass="btn esh-button esh-button-primary" runat="server" Text="[ Delete ]" OnClick="Delete_Click" />
-                </dd>
-
-            </dl>
-        </div>
-
-        <%--<div class="form-actions no-color esh-link-list">
-            <a runat="server" href="~" class="esh-link-item">
-                Back to list
-            </a>
-        </div>--%>
-
+        </dl>
     </div>
-</asp:Content>*@
+</div>
 
 @inject IUriHelper UriHelper;
 @inject ILogger<Delete> _logger;
@@ -113,8 +102,19 @@
     [Parameter]
     public int Id { get; set; }
 
+    private CatalogItem _item;
+
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Delete");
+        _logger.LogInformation("Now loading... /Catalog/Delete/{Id}", Id);
+
+        _item = CatalogService.FindCatalogItem(Id);
+    }
+
+    private void Delete_Click()
+    {
+        CatalogService.RemoveCatalogItem(_item);
+
+        UriHelper.NavigateTo("/");
     }
 }

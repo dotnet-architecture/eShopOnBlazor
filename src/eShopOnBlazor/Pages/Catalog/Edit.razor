@@ -3,113 +3,111 @@
 @using Microsoft.Extensions.Logging
 
 @inject ICatalogService CatalogService
-@*<%@ Page Title="Delete" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Delete.aspx.cs" Inherits="eShopLegacyWebForms.Catalog.Delete" %>
 
-<asp:Content ID="Edit" ContentPlaceHolderID="MainContent" runat="server">
+<h2 class="esh-body-title">Edit</h2>
 
-    <h2 class="esh-body-title">Edit</h2>
+<div>
+    <EditForm Model="_item" OnValidSubmit="@Save_Click">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <div class="container">
-        <div class="row">
-            <asp:Image runat="server" CssClass="col-md-6 esh-picture" ImageUrl='<%#"/Pics/" + product.PictureFileName%>' />
-            <div class="col-md-6 form-horizontal">
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Name</label>
-                    <div class="col-md-8">
-                        <asp:TextBox ID="Name" runat="server" CssClass="form-control" Text='<%#product.Name%>'></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="Name" Display="Dynamic"
-                            CssClass="field-validation-valid text-danger" ErrorMessage="The Name field is required." />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Description</label>
-                    <div class="col-md-8">
-                        <asp:TextBox ID="Description" runat="server" CssClass="form-control" Text='<%#product.Description%>'></asp:TextBox>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Brand</label>
-                    <div class="col-md-8">
-                        <asp:DropDownList ID="BrandDropDownList" runat="server"
-                            ItemType="eShopLegacyWebForms.Models.CatalogBrand"
-                            DataTextField="Brand"
-                            DataValueField="Id"
-                            CssClass="form-control">
-                        </asp:DropDownList>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Type</label>
-                    <div class="col-md-8">
-                        <asp:DropDownList ID="TypeDropDownList" runat="server"
-                            ItemType="eShopLegacyWebForms.Models.CatalogType"
-                            DataTextField="Type"
-                            DataValueField="Id"
-                            CssClass="form-control">
-                        </asp:DropDownList>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Price</label>
-                    <div class="col-md-8">
-                        <asp:TextBox ID="Price" runat="server" CssClass="form-control" Text='<%#product.Price%>'></asp:TextBox>
-                        <asp:RangeValidator runat="server" ControlToValidate="Price" Type="Currency" CssClass="text-danger" Display="Dynamic"
-                            MinimumValue="0" MaximumValue="1000000" ErrorMessage="The Price must be a positive number with maximum two decimals between 0 and 1 million." />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Picture name</label>
-                    <div class="col-md-8">
-                        <asp:TextBox ID="PictureFileName" runat="server" ReadOnly="true" ToolTip="Not allowed for edition"
-                            CssClass="form-control" Text='<%#product.PictureFileName%>'></asp:TextBox>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Stock</label>
-                    <div class="col-md-8">
-                        <asp:TextBox ID="Stock" runat="server" CssClass="form-control" Text='<%#product.AvailableStock%>'></asp:TextBox>
-                        <asp:RangeValidator runat="server" ControlToValidate="Stock" Type="Integer" CssClass="text-danger" Display="Dynamic"
-                            MinimumValue="0" MaximumValue="10000000" ErrorMessage="The field Stock must be between 0 and 10 million." />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Restock</label>
-                    <div class="col-md-8">
-                        <asp:TextBox ID="Restock" runat="server" CssClass="form-control" Text='<%#product.RestockThreshold%>'></asp:TextBox>
-                        <asp:RangeValidator runat="server" ControlToValidate="Restock" Type="Integer" CssClass="text-danger" Display="Dynamic"
-                            MinimumValue="0" MaximumValue="10000000" ErrorMessage="The field Restock must be between 0 and 10 million." />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-4">Max stock</label>
-                    <div class="col-md-8">
-                        <asp:TextBox ID="Maxstock" runat="server" CssClass="form-control" Text='<%#product.MaxStockThreshold%>'></asp:TextBox>
-                        <asp:RangeValidator runat="server" ControlToValidate="Maxstock" Type="Integer" CssClass="text-danger" Display="Dynamic"
-                            MinimumValue="0" MaximumValue="10000000" ErrorMessage="The field Max stock must be between 0 and 10 million." />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-12 text-right esh-button-actions">
-                        <a runat="server" href="~" class="btn esh-button esh-button-secondary">[ Cancel ]
-                        </a>
-                        <asp:Button CssClass="btn esh-button esh-button-primary" runat="server" Text="[ Save ]" OnClick="Save_Click" />
-                    </div>
-                </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Name</label>
+            <div class="col-md-3">
+                <InputText class="form-control" @bind-Value="_item.Name" />
             </div>
         </div>
-    </div>
 
-</asp:Content>*@
+        <div class="form-group">
+            <label class="control-label col-md-2">Description</label>
+            <div class="col-md-3">
+                <InputText class="form-control" @bind-Value="_item.Description" />
+            </div>
+        </div>
+
+
+        @{
+            var brands = CatalogService.GetCatalogBrands();
+            _item.CatalogBrandId = brands.First().Id;
+        }
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Brand</label>
+            <div class="col-md-3">
+                <InputSelect @bind-Value="_item.CatalogBrandId" class="form-control">
+                    @foreach (var brand in brands)
+                    {
+                        <option value="@brand.Id">@brand.Brand</option>
+                    }
+                    /**/
+                </InputSelect>
+            </div>
+        </div>
+
+        @{
+            var types = CatalogService.GetCatalogTypes();
+            _item.CatalogTypeId = types.First().Id;
+        }
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Type</label>
+            <div class="col-md-3">
+                <InputSelect @bind-Value="_item.CatalogTypeId" class="form-control">
+                    @foreach (var type in types)
+                    {
+                        <option value="@type.Id">@type.Type</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Price</label>
+            <div class="col-md-3">
+                <InputNumber @bind-Value="_item.Price" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Picture name</label>
+            <div class="col-md-4 esh-form-information">
+                Uploading images not allowed for this version.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Stock</label>
+            <div class="col-md-3">
+                <InputNumber @bind-Value="_item.AvailableStock" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Restock</label>
+            <div class="col-md-3">
+                <InputNumber @bind-Value="_item.RestockThreshold" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Max stock</label>
+            <div class="col-md-3">
+                <InputNumber @bind-Value="_item.MaxStockThreshold" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
+                <a href="/" class="btn esh-button esh-button-secondary">
+                    [ Cancel ]
+                </a>
+                <button type="submit" class="btn esh-button esh-button-primary">
+                    [ Save ]
+                </button>
+            </div>
+        </div>
+    </EditForm>
+</div>
 
 @inject IUriHelper UriHelper;
 @inject ILogger<Edit> _logger;
@@ -118,8 +116,17 @@
     [Parameter]
     public int Id { get; set; }
 
+    private CatalogItem _item;
+
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Edit");
+        _logger.LogInformation("Now loading... /Catalog/Edit/{Id}", Id);
+
+        _item = CatalogService.FindCatalogItem(Id);
+    }
+
+    private void Save_Click()
+    {
+        CatalogService.UpdateCatalogItem(_item);
     }
 }
