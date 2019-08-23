@@ -1,8 +1,7 @@
 ﻿@page "/Catalog/Details/{id:int}"
-
-@using Microsoft.Extensions.Logging
-
 @inject ICatalogService CatalogService
+@inject IUriHelper UriHelper;
+@inject ILogger<Details> _logger;
 
 <h2 class="esh-body-title">Details</h2>
 
@@ -96,10 +95,6 @@
     </div>
 
 </div>
-
-
-@inject IUriHelper UriHelper;
-@inject ILogger<Details> _logger;
 
 @code {
     private CatalogItem _item;

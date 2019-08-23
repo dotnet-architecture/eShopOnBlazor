@@ -1,8 +1,7 @@
 ﻿@page "/Catalog/Delete/{id:int}"
-
-@using Microsoft.Extensions.Logging
-
 @inject ICatalogService CatalogService
+@inject IUriHelper UriHelper;
+@inject ILogger<Delete> _logger;
 
 <div class="container">
     <div class="row">
@@ -94,9 +93,6 @@
         </dl>
     </div>
 </div>
-
-@inject IUriHelper UriHelper;
-@inject ILogger<Delete> _logger;
 
 @code {
     [Parameter]

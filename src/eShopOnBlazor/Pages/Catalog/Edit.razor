@@ -1,8 +1,7 @@
 ﻿@page "/Catalog/Edit/{id:int}"
-
-@using Microsoft.Extensions.Logging
-
 @inject ICatalogService CatalogService
+@inject IUriHelper UriHelper;
+@inject ILogger<Edit> _logger;
 
 <h2 class="esh-body-title">Edit</h2>
 
@@ -25,35 +24,23 @@
             </div>
         </div>
 
-
-        @{
-            var brands = CatalogService.GetCatalogBrands();
-            _item.CatalogBrandId = brands.First().Id;
-        }
-
         <div class="form-group">
             <label class="control-label col-md-2">Brand</label>
             <div class="col-md-3">
                 <InputSelect @bind-Value="_item.CatalogBrandId" class="form-control">
-                    @foreach (var brand in brands)
+                    @foreach (var brand in _brands)
                     {
                         <option value="@brand.Id">@brand.Brand</option>
                     }
-                    /**/
                 </InputSelect>
             </div>
         </div>
-
-        @{
-            var types = CatalogService.GetCatalogTypes();
-            _item.CatalogTypeId = types.First().Id;
-        }
 
         <div class="form-group">
             <label class="control-label col-md-2">Type</label>
             <div class="col-md-3">
                 <InputSelect @bind-Value="_item.CatalogTypeId" class="form-control">
-                    @foreach (var type in types)
+                    @foreach (var type in _types)
                     {
                         <option value="@type.Id">@type.Type</option>
                     }
@@ -109,20 +96,22 @@
     </EditForm>
 </div>
 
-@inject IUriHelper UriHelper;
-@inject ILogger<Edit> _logger;
-
 @code {
     [Parameter]
     public int Id { get; set; }
 
     private CatalogItem _item;
+    private IEnumerable<CatalogBrand> _brands;
+    private IEnumerable<CatalogType> _types;
 
     protected override void OnInitialized()
     {
         _logger.LogInformation("Now loading... /Catalog/Edit/{Id}", Id);
 
         _item = CatalogService.FindCatalogItem(Id);
+
+        _brands = CatalogService.GetCatalogBrands();
+        _types = CatalogService.GetCatalogTypes();
     }
 
     private void Save_Click()
