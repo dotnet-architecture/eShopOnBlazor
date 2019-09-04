@@ -1,12 +1,12 @@
-﻿@page "/Catalog/Create"
+﻿@page "/Catalog/Edit/{id:int}"
 @inject ICatalogService CatalogService
 @inject IUriHelper UriHelper;
-@inject ILogger<Create> _logger;
+@inject ILogger<Edit> _logger;
 
-<h2 class="esh-body-title">Create</h2>
+<h2 class="esh-body-title">Edit</h2>
 
 <div>
-    <EditForm Model="_item" OnValidSubmit="@Create_Click">
+    <EditForm Model="_item" OnValidSubmit="@Save_Click">
         <DataAnnotationsValidator />
 
         <div class="form-group">
@@ -96,7 +96,7 @@
                     [ Cancel ]
                 </a>
                 <button type="submit" class="btn esh-button esh-button-primary">
-                    [ Create ]
+                    [ Save ]
                 </button>
             </div>
         </div>
@@ -104,27 +104,25 @@
 </div>
 
 @code {
-    private readonly CatalogItem _item = new CatalogItem();
+    [Parameter]
+    public int Id { get; set; }
 
-    private IEnumerable<CatalogType> _types;
+    private CatalogItem _item;
     private IEnumerable<CatalogBrand> _brands;
+    private IEnumerable<CatalogType> _types;
 
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Create");
+        _logger.LogInformation("Now loading... /Catalog/Edit/{Id}", Id);
 
-        _types = CatalogService.GetCatalogTypes();
-        _item.CatalogTypeId = _types.First().Id;
-
+        _item = CatalogService.FindCatalogItem(Id);
 
         _brands = CatalogService.GetCatalogBrands();
-        _item.CatalogBrandId = _brands.First().Id;
+        _types = CatalogService.GetCatalogTypes();
     }
 
-    private void Create_Click()
+    private void Save_Click()
     {
-        CatalogService.CreateCatalogItem(_item);
-
-        UriHelper.NavigateTo("/");
+        CatalogService.UpdateCatalogItem(_item);
     }
 }

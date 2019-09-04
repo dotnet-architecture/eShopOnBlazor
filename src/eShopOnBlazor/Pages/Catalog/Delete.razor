@@ -1,0 +1,116 @@
+﻿@page "/Catalog/Delete/{id:int}"
+@inject ICatalogService CatalogService
+@inject IUriHelper UriHelper;
+@inject ILogger<Delete> _logger;
+
+<div class="container">
+    <div class="row">
+        <img class="col-md-6 esh-picture" src="@($"/Pics/{_item.PictureFileName}")">
+
+        <dl class="col-md-6 dl-horizontal">
+            <dt>
+                Name
+            </dt>
+
+            <dd>
+                @_item.Name
+            </dd>
+
+            <dt>
+                Description
+            </dt>
+
+            <dd>
+                @_item.Description
+            </dd>
+
+            <dt>
+                Brand
+            </dt>
+
+            <dd>
+                @_item.CatalogBrand.Brand
+            </dd>
+
+            <dt>
+                Type
+            </dt>
+
+            <dd>
+                @_item.CatalogType.Type
+            </dd>
+            <dt>
+                Price
+            </dt>
+
+            <dd>
+                @_item.Price
+            </dd>
+
+            <dt>
+                Picture name
+            </dt>
+
+            <dd>
+                @_item.PictureFileName
+            </dd>
+
+            <dt>
+                Stock
+            </dt>
+
+            <dd>
+                @_item.AvailableStock
+            </dd>
+
+            <dt>
+                Restock
+            </dt>
+
+            <dd>
+                @_item.RestockThreshold
+            </dd>
+
+            <dt>
+                Max stock
+            </dt>
+
+            <dd>
+                @_item.MaxStockThreshold
+            </dd>
+
+            <dt></dt>
+
+            <dd class="text-right esh-button-actions">
+                <a href="/" class="btn esh-button esh-button-secondary">
+                    [ Cancel ]
+                </a>
+                <button class="btn esh-button esh-button-primary" @onclick="Delete_Click">
+                    [ Delete ]
+                </button>
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private CatalogItem _item;
+
+    protected override void OnInitialized()
+    {
+        _logger.LogInformation("Now loading... /Catalog/Delete/{Id}", Id);
+
+        _item = CatalogService.FindCatalogItem(Id);
+    }
+
+    private void Delete_Click()
+    {
+        CatalogService.RemoveCatalogItem(_item);
+
+        UriHelper.NavigateTo("/");
+    }
+}
