@@ -1,7 +1,7 @@
 ﻿@page "/Catalog/Create"
 @inject ICatalogService CatalogService
-@inject IUriHelper UriHelper;
-@inject ILogger<Create> _logger;
+@inject NavigationManager NavigationManager
+@inject ILogger<Create> Logger
 
 <h2 class="esh-body-title">Create</h2>
 
@@ -111,7 +111,7 @@
 
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Create");
+        Logger.LogInformation("Now loading... /Catalog/Create");
 
         _types = CatalogService.GetCatalogTypes();
         _item.CatalogTypeId = _types.First().Id;
@@ -125,6 +125,6 @@
     {
         CatalogService.CreateCatalogItem(_item);
 
-        UriHelper.NavigateTo("/");
+        NavigationManager.NavigateTo("/");
     }
 }

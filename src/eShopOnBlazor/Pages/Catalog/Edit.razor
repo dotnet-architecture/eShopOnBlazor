@@ -1,7 +1,6 @@
 ﻿@page "/Catalog/Edit/{id:int}"
 @inject ICatalogService CatalogService
-@inject IUriHelper UriHelper;
-@inject ILogger<Edit> _logger;
+@inject ILogger<Edit> Logger
 
 <h2 class="esh-body-title">Edit</h2>
 
@@ -113,7 +112,7 @@
 
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Edit/{Id}", Id);
+        Logger.LogInformation("Now loading... /Catalog/Edit/{Id}", Id);
 
         _item = CatalogService.FindCatalogItem(Id);
 

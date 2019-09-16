@@ -1,7 +1,7 @@
 ﻿@page "/Catalog/Delete/{id:int}"
 @inject ICatalogService CatalogService
-@inject IUriHelper UriHelper;
-@inject ILogger<Delete> _logger;
+@inject NavigationManager NavigationManager
+@inject ILogger<Delete> Logger
 
 <div class="container">
     <div class="row">
@@ -102,7 +102,7 @@
 
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Delete/{Id}", Id);
+        Logger.LogInformation("Now loading... /Catalog/Delete/{Id}", Id);
 
         _item = CatalogService.FindCatalogItem(Id);
     }
@@ -111,6 +111,6 @@
     {
         CatalogService.RemoveCatalogItem(_item);
 
-        UriHelper.NavigateTo("/");
+        NavigationManager.NavigateTo("/");
     }
 }

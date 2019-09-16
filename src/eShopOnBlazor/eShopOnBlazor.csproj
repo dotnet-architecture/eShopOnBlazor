@@ -33,7 +33,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.3" />
-    <PackageReference Include="EntityFramework" Version="6.3.0-preview8-19405-04" />
+    <PackageReference Include="EntityFramework" Version="6.3.0-preview9-19423-04" />
     <PackageReference Include="log4net" Version="2.0.8" />
   </ItemGroup>
 
