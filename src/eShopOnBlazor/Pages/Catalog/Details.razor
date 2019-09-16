@@ -1,6 +1,6 @@
 ﻿@page "/Catalog/Details/{id:int}"
-@inject ICatalogService _catalogService
-@inject ILogger<Details> _logger
+@inject ICatalogService CatalogService
+@inject ILogger<Details> Logger
 
 <h2 class="esh-body-title">Details</h2>
 
@@ -103,8 +103,8 @@
 
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Details/{Id}", Id);
+        Logger.LogInformation("Now loading... /Catalog/Details/{Id}", Id);
 
-        _item = _catalogService.FindCatalogItem(Id);
+        _item = CatalogService.FindCatalogItem(Id);
     }
 }

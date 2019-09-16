@@ -1,7 +1,7 @@
 ﻿@page "/Catalog/Create"
-@inject ICatalogService _catalogService
-@inject NavigationManager _navigationManager
-@inject ILogger<Create> _logger
+@inject ICatalogService CatalogService
+@inject NavigationManager NavigationManager
+@inject ILogger<Create> Logger
 
 <h2 class="esh-body-title">Create</h2>
 
@@ -111,20 +111,20 @@
 
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Create");
+        Logger.LogInformation("Now loading... /Catalog/Create");
 
-        _types = _catalogService.GetCatalogTypes();
+        _types = CatalogService.GetCatalogTypes();
         _item.CatalogTypeId = _types.First().Id;
 
 
-        _brands = _catalogService.GetCatalogBrands();
+        _brands = CatalogService.GetCatalogBrands();
         _item.CatalogBrandId = _brands.First().Id;
     }
 
     private void Create_Click()
     {
-        _catalogService.CreateCatalogItem(_item);
+        CatalogService.CreateCatalogItem(_item);
 
-        _navigationManager.NavigateTo("/");
+        NavigationManager.NavigateTo("/");
     }
 }

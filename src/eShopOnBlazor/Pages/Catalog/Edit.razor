@@ -1,6 +1,6 @@
 ﻿@page "/Catalog/Edit/{id:int}"
-@inject ICatalogService _catalogService
-@inject ILogger<Edit> _logger
+@inject ICatalogService CatalogService
+@inject ILogger<Edit> Logger
 
 <h2 class="esh-body-title">Edit</h2>
 
@@ -112,16 +112,16 @@
 
     protected override void OnInitialized()
     {
-        _logger.LogInformation("Now loading... /Catalog/Edit/{Id}", Id);
+        Logger.LogInformation("Now loading... /Catalog/Edit/{Id}", Id);
 
-        _item = _catalogService.FindCatalogItem(Id);
+        _item = CatalogService.FindCatalogItem(Id);
 
-        _brands = _catalogService.GetCatalogBrands();
-        _types = _catalogService.GetCatalogTypes();
+        _brands = CatalogService.GetCatalogBrands();
+        _types = CatalogService.GetCatalogTypes();
     }
 
     private void Save_Click()
     {
-        _catalogService.UpdateCatalogItem(_item);
+        CatalogService.UpdateCatalogItem(_item);
     }
 }
