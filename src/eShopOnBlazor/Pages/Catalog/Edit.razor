@@ -1,7 +1,6 @@
 ﻿@page "/Catalog/Edit/{id:int}"
-@inject ICatalogService CatalogService
-@inject IUriHelper UriHelper;
-@inject ILogger<Edit> _logger;
+@inject ICatalogService _catalogService
+@inject ILogger<Edit> _logger
 
 <h2 class="esh-body-title">Edit</h2>
 
@@ -115,14 +114,14 @@
     {
         _logger.LogInformation("Now loading... /Catalog/Edit/{Id}", Id);
 
-        _item = CatalogService.FindCatalogItem(Id);
+        _item = _catalogService.FindCatalogItem(Id);
 
-        _brands = CatalogService.GetCatalogBrands();
-        _types = CatalogService.GetCatalogTypes();
+        _brands = _catalogService.GetCatalogBrands();
+        _types = _catalogService.GetCatalogTypes();
     }
 
     private void Save_Click()
     {
-        CatalogService.UpdateCatalogItem(_item);
+        _catalogService.UpdateCatalogItem(_item);
     }
 }

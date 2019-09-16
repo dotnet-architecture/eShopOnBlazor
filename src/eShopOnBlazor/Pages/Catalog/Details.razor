@@ -1,7 +1,6 @@
 ﻿@page "/Catalog/Details/{id:int}"
-@inject ICatalogService CatalogService
-@inject IUriHelper UriHelper;
-@inject ILogger<Details> _logger;
+@inject ICatalogService _catalogService
+@inject ILogger<Details> _logger
 
 <h2 class="esh-body-title">Details</h2>
 
@@ -106,6 +105,6 @@
     {
         _logger.LogInformation("Now loading... /Catalog/Details/{Id}", Id);
 
-        _item = CatalogService.FindCatalogItem(Id);
+        _item = _catalogService.FindCatalogItem(Id);
     }
 }

@@ -1,7 +1,7 @@
 ﻿@page "/Catalog/Create"
-@inject ICatalogService CatalogService
-@inject IUriHelper UriHelper;
-@inject ILogger<Create> _logger;
+@inject ICatalogService _catalogService
+@inject NavigationManager _navigationManager
+@inject ILogger<Create> _logger
 
 <h2 class="esh-body-title">Create</h2>
 
@@ -113,18 +113,18 @@
     {
         _logger.LogInformation("Now loading... /Catalog/Create");
 
-        _types = CatalogService.GetCatalogTypes();
+        _types = _catalogService.GetCatalogTypes();
         _item.CatalogTypeId = _types.First().Id;
 
 
-        _brands = CatalogService.GetCatalogBrands();
+        _brands = _catalogService.GetCatalogBrands();
         _item.CatalogBrandId = _brands.First().Id;
     }
 
     private void Create_Click()
     {
-        CatalogService.CreateCatalogItem(_item);
+        _catalogService.CreateCatalogItem(_item);
 
-        UriHelper.NavigateTo("/");
+        _navigationManager.NavigateTo("/");
     }
 }
