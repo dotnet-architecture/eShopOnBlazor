@@ -12,6 +12,7 @@ using eShopOnBlazor.Data;
 using eShopOnBlazor.Models;
 using eShopOnBlazor.Models.Infrastructure;
 using eShopOnBlazor.Services;
+using Microsoft.Extensions.Logging;
 
 namespace eShopOnBlazor
 {
@@ -50,8 +51,10 @@ namespace eShopOnBlazor
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddLog4Net("log4Net.xml");
+
             if (Env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
