@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="log4Net.xml" />
     <None Remove="Models\Infrastructure\dbo.catalog_brand_hilo.Sequence.sql" />
     <None Remove="Models\Infrastructure\dbo.catalog_hilo.Sequence.sql" />
     <None Remove="Models\Infrastructure\dbo.catalog_type_hilo.Sequence.sql" />
@@ -16,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="log4Net.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Models\Infrastructure\dbo.catalog_brand_hilo.Sequence.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -35,6 +39,7 @@
     <PackageReference Include="Autofac" Version="4.9.3" />
     <PackageReference Include="EntityFramework" Version="6.3.0-preview9-19423-04" />
     <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.12" />
   </ItemGroup>
 
 </Project>
