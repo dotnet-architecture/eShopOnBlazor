@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <LangVersion>7.3</LangVersion>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,8 +37,8 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.3" />
-    <PackageReference Include="EntityFramework" Version="6.3.0-preview9-19423-04" />
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="log4net" Version="2.0.12" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.12" />
   </ItemGroup>
 
