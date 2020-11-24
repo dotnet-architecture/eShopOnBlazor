@@ -30,8 +30,9 @@
 
             <dd>
                 @{
-                    Console.WriteLine(_item.CatalogBrand != null ? _item.CatalogBrand.Brand : String.Empty);
+                    string catalogBrandName = _item.CatalogBrand != null ? _item.CatalogBrand.Brand : String.Empty;
                 }
+                @catalogBrandName
             </dd>
 
             <dt>
@@ -40,8 +41,9 @@
 
             <dd>
                 @{
-                    Console.WriteLine(_item.CatalogType != null ? _item.CatalogType.Type : String.Empty);
+                    string catalogTypeName = _item.CatalogType != null ? _item.CatalogType.Type : String.Empty;
                 }
+                @catalogTypeName
             </dd>
             <dt>
                 Price
