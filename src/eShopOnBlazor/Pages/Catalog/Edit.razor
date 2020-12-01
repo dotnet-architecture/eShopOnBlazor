@@ -1,5 +1,6 @@
 ﻿@page "/Catalog/Edit/{id:int}"
 @inject ICatalogService CatalogService
+@inject NavigationManager NavigationManager
 @inject ILogger<Edit> Logger
 
 <h2 class="esh-body-title">Edit</h2>
@@ -123,5 +124,6 @@
     private void Save_Click()
     {
         CatalogService.UpdateCatalogItem(_item);
+        NavigationManager.NavigateTo("/");
     }
 }

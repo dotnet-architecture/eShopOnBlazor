@@ -3,10 +3,10 @@
 @inject NavigationManager NavigationManager
 @inject ILogger<Delete> Logger
 
+
 <div class="container">
     <div class="row">
         <img class="col-md-6 esh-picture" src="@($"/Pics/{_item.PictureFileName}")">
-
         <dl class="col-md-6 dl-horizontal">
             <dt>
                 Name
@@ -29,7 +29,10 @@
             </dt>
 
             <dd>
-                @_item.CatalogBrand.Brand
+                @{
+                    string catalogBrandName = _item.CatalogBrand != null ? _item.CatalogBrand.Brand : String.Empty;
+                }
+                @catalogBrandName
             </dd>
 
             <dt>
@@ -37,7 +40,10 @@
             </dt>
 
             <dd>
-                @_item.CatalogType.Type
+                @{
+                    string catalogTypeName = _item.CatalogType != null ? _item.CatalogType.Type : String.Empty;
+                }
+                @catalogTypeName
             </dd>
             <dt>
                 Price
