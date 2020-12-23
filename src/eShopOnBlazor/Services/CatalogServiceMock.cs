@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using eShopOnBlazor.Models;
+﻿using eShopOnBlazor.Models;
 using eShopOnBlazor.Models.Infrastructure;
 using eShopOnBlazor.ViewModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace eShopOnBlazor.Services
 {
@@ -19,7 +18,7 @@ namespace eShopOnBlazor.Services
         public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize = 10, int pageIndex = 0)
         {
             var items = ComposeCatalogItems(catalogItems);
-            
+
             var itemsOnPage = items
                 .OrderBy(c => c.Id)
                 .Skip(pageSize * pageIndex)

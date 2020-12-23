@@ -1,10 +1,8 @@
-﻿using System;
-using eShopOnBlazor.Models;
+﻿using eShopOnBlazor.Models;
+using eShopOnBlazor.ViewModel;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Linq;
-using eShopOnBlazor.ViewModel;
 
 namespace eShopOnBlazor.Services
 {
