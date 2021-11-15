@@ -87,31 +87,34 @@
     }
 </div>
 
-<div class="esh-pager">
-    <div class="container">
-        <article class="esh-pager-wrapper row">
-            <nav>
-                @if (pageIndex > 0)
-                {
-                    <a @onclick="Previous" class="esh-pager-item esh-pager-item--navigable">
-                        Previous
-                    </a>
-                }
+@if (paginatedCatalogItems != null)
+{
+    <div class="esh-pager">
+        <div class="container">
+            <article class="esh-pager-wrapper row">
+                <nav>
+                    @if (pageIndex > 0)
+                    {
+                        <a @onclick="Previous" class="esh-pager-item esh-pager-item--navigable">
+                            Previous
+                        </a>
+                    }
 
-                <span class="esh-pager-item">
-                    Showing @paginatedCatalogItems.ItemsPerPage of @paginatedCatalogItems.TotalItems products - Page @(paginatedCatalogItems.ActualPage + 1) - @paginatedCatalogItems.TotalPages
-                </span>
+                    <span class="esh-pager-item">
+                        Showing @paginatedCatalogItems.ItemsPerPage of @paginatedCatalogItems.TotalItems products - Page @(paginatedCatalogItems.ActualPage + 1) - @paginatedCatalogItems.TotalPages
+                    </span>
 
-                @if (pageIndex < paginatedCatalogItems.TotalPages - 1)
-                {
-                    <a @onclick="Next" class="esh-pager-item esh-pager-item--navigable">
-                        Next
-                    </a>
-                }
-            </nav>
-        </article>
+                    @if (pageIndex < paginatedCatalogItems.TotalPages - 1)
+                    {
+                        <a @onclick="Next" class="esh-pager-item esh-pager-item--navigable">
+                            Next
+                        </a>
+                    }
+                </nav>
+            </article>
+        </div>
     </div>
-</div>
+}
 
 @code {
     int pageSize = 10;
