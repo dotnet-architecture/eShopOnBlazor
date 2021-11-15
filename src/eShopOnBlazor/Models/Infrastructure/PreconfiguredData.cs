@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
-namespace eShopOnBlazor.Models.Infrastructure
+namespace eShopOnBlazor.Models.Infrastructure;
+
+public static class PreconfiguredData
 {
-    public static class PreconfiguredData
+    public static List<CatalogItem> GetPreconfiguredCatalogItems()
     {
-        public static List<CatalogItem> GetPreconfiguredCatalogItems()
-        {
-            return new List<CatalogItem>()
+        return new List<CatalogItem>()
             {
                 new CatalogItem { Id =1, CatalogTypeId = 2, CatalogBrandId = 2, AvailableStock = 100, Description = ".NET Bot Black Hoodie", Name = ".NET Bot Black Hoodie", Price = 19.5M, PictureFileName = "1.png" },
                 new CatalogItem { Id =2, CatalogTypeId = 1, CatalogBrandId = 2, AvailableStock = 100, Description = ".NET Black & White Mug", Name = ".NET Black & White Mug", Price= 8.50M, PictureFileName = "2.png" },
@@ -24,11 +21,11 @@ namespace eShopOnBlazor.Models.Infrastructure
                 new CatalogItem { Id =11, CatalogTypeId = 3, CatalogBrandId = 2, AvailableStock = 100, Description = "Cup<T> Sheet", Name = "Cup<T> Sheet", Price = 8.5M, PictureFileName = "11.png" },
                 new CatalogItem { Id =12, CatalogTypeId = 2, CatalogBrandId = 5, AvailableStock = 100, Description = "Prism White TShirt", Name = "Prism White TShirt", Price = 12, PictureFileName = "12.png" },
             };
-        }
+    }
 
-        public static IEnumerable<CatalogBrand> GetPreconfiguredCatalogBrands()
-        {
-            return new List<CatalogBrand>()
+    public static IEnumerable<CatalogBrand> GetPreconfiguredCatalogBrands()
+    {
+        return new List<CatalogBrand>()
             {
                 new CatalogBrand() { Id =1, Brand = "Azure"},
                 new CatalogBrand() { Id =2, Brand = ".NET" },
@@ -36,17 +33,16 @@ namespace eShopOnBlazor.Models.Infrastructure
                 new CatalogBrand() { Id =4, Brand = "SQL Server" },
                 new CatalogBrand() { Id =5, Brand = "Other" }
             };
-        }
+    }
 
-        public static IEnumerable<CatalogType> GetPreconfiguredCatalogTypes()
-        {
-            return new List<CatalogType>()
+    public static IEnumerable<CatalogType> GetPreconfiguredCatalogTypes()
+    {
+        return new List<CatalogType>()
             {
                 new CatalogType() { Id =1, Type = "Mug"},
                 new CatalogType() { Id =2, Type = "T-Shirt" },
                 new CatalogType() { Id =3, Type = "Sheet" },
                 new CatalogType() { Id =4, Type = "USB Memory Stick" }
             };
-        }
     }
 }
