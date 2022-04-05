@@ -9,7 +9,7 @@ namespace eShopLegacyWebForms.Models
 
         public CatalogItem()
         {
-            PictureFileName = DefaultPictureName;
+            //PictureFileName = DefaultPictureName;
         }
         public int Id { get; set; }
 

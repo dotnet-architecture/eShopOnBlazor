@@ -64,6 +64,7 @@
                         <asp:TextBox ID="PictureFileName" runat="server" ReadOnly="true" ToolTip="Not allowed for edition"
                             CssClass="form-control" Text='<%#product.PictureFileName%>'></asp:TextBox>
                     </div>
+                    <asp:FileUpload ID="PictureUpload" runat="server" />  
                 </div>
 
                 <div class="form-group">

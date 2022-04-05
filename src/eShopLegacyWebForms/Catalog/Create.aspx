@@ -59,9 +59,10 @@
 
             <div class="form-group">
                 <label class="control-label col-md-2">Picture name</label>
-                <div class="col-md-4 esh-form-information">
+                <asp:FileUpload ID="PictureUpload" runat="server" />  
+               <%-- <div class="col-md-4 esh-form-information">
                     Uploading images not allowed for this version.
-                </div>
+                </div>--%>
             </div>
 
             <div class="form-group">

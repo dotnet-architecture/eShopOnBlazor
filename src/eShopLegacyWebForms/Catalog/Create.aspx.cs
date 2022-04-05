@@ -31,6 +31,11 @@ namespace eShopLegacyWebForms.Catalog
         {
             if (this.ModelState.IsValid)
             {
+                //get the file name of the posted image  
+                string imgName = PictureUpload.FileName;
+                //sets the image path  
+                string imgPath = "~/Pics/" + imgName;
+                PictureUpload.SaveAs(Server.MapPath(imgPath));
                 var catalogItem = new CatalogItem
                 {
                     Name = Name.Text,
@@ -38,6 +43,8 @@ namespace eShopLegacyWebForms.Catalog
                     CatalogBrandId = int.Parse(Brand.SelectedValue),
                     CatalogTypeId = int.Parse(Type.SelectedValue),
                     Price = decimal.Parse(Price.Text),
+                    PictureFileName = imgName,
+                    PictureUri = imgPath,
                     AvailableStock = int.Parse(Stock.Text),
                     RestockThreshold = int.Parse(Restock.Text),
                     MaxStockThreshold = int.Parse(Maxstock.Text)
