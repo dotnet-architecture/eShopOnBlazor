@@ -6,110 +6,124 @@
 <h2 class="esh-body-title">Edit</h2>
 
 <div>
-    <EditForm Model="_item" OnValidSubmit="@Save_Click">
-        <DataAnnotationsValidator />
+    @if (_item != null)
+    {
+        <EditForm Model="_item" OnValidSubmit="@Save_Click">
+            <DataAnnotationsValidator />
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Name</label>
-            <div class="col-md-3">
-                <InputText class="form-control" @bind-Value="_item.Name" />
-                <ValidationMessage For="(() => _item.Name)" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Name</label>
+                <div class="col-md-3">
+                    <InputText class="form-control" @bind-Value="_item.Name" />
+                    <ValidationMessage For="(() => _item.Name)" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Description</label>
-            <div class="col-md-3">
-                <InputText class="form-control" @bind-Value="_item.Description" />
-                <ValidationMessage For="(() => _item.Description)" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Description</label>
+                <div class="col-md-3">
+                    <InputText class="form-control" @bind-Value="_item.Description" />
+                    <ValidationMessage For="(() => _item.Description)" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Brand</label>
-            <div class="col-md-3">
-                <InputSelect @bind-Value="_item.CatalogBrandId" class="form-control">
-                    @foreach (var brand in _brands)
-                    {
-                        <option value="@brand.Id">@brand.Brand</option>
-                    }
-                </InputSelect>
-                <ValidationMessage For="(() => _item.CatalogBrandId)" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Brand</label>
+                <div class="col-md-3">
+                    <InputSelect @bind-Value="_item.CatalogBrandId" class="form-control">
+                        @foreach (var brand in _brands)
+                        {
+                            <option value="@brand.Id">@brand.Brand</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="(() => _item.CatalogBrandId)" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Type</label>
-            <div class="col-md-3">
-                <InputSelect @bind-Value="_item.CatalogTypeId" class="form-control">
-                    @foreach (var type in _types)
-                    {
-                        <option value="@type.Id">@type.Type</option>
-                    }
-                </InputSelect>
-                <ValidationMessage For="(() => _item.CatalogTypeId)" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Type</label>
+                <div class="col-md-3">
+                    <InputSelect @bind-Value="_item.CatalogTypeId" class="form-control">
+                        @foreach (var type in _types)
+                        {
+                            <option value="@type.Id">@type.Type</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="(() => _item.CatalogTypeId)" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Price</label>
-            <div class="col-md-3">
-                <InputNumber @bind-Value="_item.Price" class="form-control" />
-                <ValidationMessage For="(() => _item.Price)" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Price</label>
+                <div class="col-md-3">
+                    <InputNumber @bind-Value="_item.Price" class="form-control" />
+                    <ValidationMessage For="(() => _item.Price)" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Picture name</label>
-            <div class="col-md-4 esh-form-information">
-                Uploading images not allowed for this version.
+            <div class="form-group">
+                <label class="control-label col-md-2">Picture name</label>
+                <div class="col-md-4 esh-form-information">
+                    Uploading images not allowed for this version.
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Stock</label>
-            <div class="col-md-3">
-                <InputNumber @bind-Value="_item.AvailableStock" class="form-control" />
-                <ValidationMessage For="(() => _item.AvailableStock)" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Stock</label>
+                <div class="col-md-3">
+                    <InputNumber @bind-Value="_item.AvailableStock" class="form-control" />
+                    <ValidationMessage For="(() => _item.AvailableStock)" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Restock</label>
-            <div class="col-md-3">
-                <InputNumber @bind-Value="_item.RestockThreshold" class="form-control" />
-                <ValidationMessage For="(() => _item.RestockThreshold)" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Restock</label>
+                <div class="col-md-3">
+                    <InputNumber @bind-Value="_item.RestockThreshold" class="form-control" />
+                    <ValidationMessage For="(() => _item.RestockThreshold)" />
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Max stock</label>
-            <div class="col-md-3">
-                <InputNumber @bind-Value="_item.MaxStockThreshold" class="form-control" />
-                <ValidationMessage For="(() => _item.MaxStockThreshold)" />
+            <div class="form-group">
+                <label class="control-label col-md-2">Max stock</label>
+                <div class="col-md-3">
+                    <InputNumber @bind-Value="_item.MaxStockThreshold" class="form-control" />
+                    <ValidationMessage For="(() => _item.MaxStockThreshold)" />
+                </div>
             </div>
-        </div>
 
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
+                    <a href="/" class="btn esh-button esh-button-secondary">
+                        [ Cancel ]
+                    </a>
+                    <button type="submit" class="btn esh-button esh-button-primary">
+                        [ Save ]
+                    </button>
+                </div>
+            </div>
+        </EditForm>
+    }
+    else
+    {
+        <h3 class="esh-body-sub-title">Item not found</h3>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
                 <a href="/" class="btn esh-button esh-button-secondary">
                     [ Cancel ]
                 </a>
-                <button type="submit" class="btn esh-button esh-button-primary">
-                    [ Save ]
-                </button>
             </div>
         </div>
-    </EditForm>
+    }
 </div>
 
 @code {
     [Parameter]
     public int Id { get; set; }
 
-    private CatalogItem _item;
-    private IEnumerable<CatalogBrand> _brands;
-    private IEnumerable<CatalogType> _types;
+    private CatalogItem? _item;
+    private IEnumerable<CatalogBrand> _brands = new List<CatalogBrand>();
+    private IEnumerable<CatalogType> _types = new List<CatalogType>();
 
     protected override void OnInitialized()
     {
@@ -123,7 +137,14 @@
 
     private void Save_Click()
     {
-        CatalogService.UpdateCatalogItem(_item);
+        if (_item != null)
+        {
+            CatalogService.UpdateCatalogItem(_item);
+        }
+        else
+        {
+            Logger.LogWarning("Item with {Id} is null", Id);
+        }
         NavigationManager.NavigateTo("/");
     }
 }

@@ -67,6 +67,14 @@
     color: #FFFFFF;
 }
 
+.esh-body-sub-title {
+    font-family: Montserrat, sans-serif;
+    padding-left: 3rem;
+    margin: 0px;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
 /*Price*/
 .esh-price:before {
     content: '$';

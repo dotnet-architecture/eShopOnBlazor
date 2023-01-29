@@ -106,8 +106,8 @@
 @code {
     private readonly CatalogItem _item = new CatalogItem();
 
-    private IEnumerable<CatalogType> _types;
-    private IEnumerable<CatalogBrand> _brands;
+    private IEnumerable<CatalogType> _types = new List<CatalogType>();
+    private IEnumerable<CatalogBrand> _brands = new List<CatalogBrand>();
 
     protected override void OnInitialized()
     {

@@ -5,106 +5,122 @@
 
 
 <div class="container">
-    <div class="row">
-        <img class="col-md-6 esh-picture" src="@($"/Pics/{_item.PictureFileName}")">
+    @if (_item != null)
+    {
+        <div class="row">
+            <img class="col-md-6 esh-picture" src="@($"/Pics/{_item.PictureFileName}")">
+            <dl class="col-md-6 dl-horizontal">
+                <dt>
+                    Name
+                </dt>
+
+                <dd>
+                    @_item.Name
+                </dd>
+
+                <dt>
+                    Description
+                </dt>
+
+                <dd>
+                    @_item.Description
+                </dd>
+
+                <dt>
+                    Brand
+                </dt>
+
+                <dd>
+                    @{
+                        string catalogBrandName = _item.CatalogBrand != null ? _item.CatalogBrand.Brand : String.Empty;
+                    }
+                    @catalogBrandName
+                </dd>
+
+                <dt>
+                    Type
+                </dt>
+
+                <dd>
+                    @{
+                        string catalogTypeName = _item.CatalogType != null ? _item.CatalogType.Type : String.Empty;
+                    }
+                    @catalogTypeName
+                </dd>
+                <dt>
+                    Price
+                </dt>
+
+                <dd>
+                    @_item.Price
+                </dd>
+
+                <dt>
+                    Picture name
+                </dt>
+
+                <dd>
+                    @_item.PictureFileName
+                </dd>
+
+                <dt>
+                    Stock
+                </dt>
+
+                <dd>
+                    @_item.AvailableStock
+                </dd>
+
+                <dt>
+                    Restock
+                </dt>
+
+                <dd>
+                    @_item.RestockThreshold
+                </dd>
+
+                <dt>
+                    Max stock
+                </dt>
+
+                <dd>
+                    @_item.MaxStockThreshold
+                </dd>
+
+                <dt></dt>
+                }
+                <dd class="text-right esh-button-actions">
+                    <a href="/" class="btn esh-button esh-button-secondary">
+                        [ Cancel ]
+                    </a>
+
+                    <button class="btn esh-button esh-button-primary" @onclick="Delete_Click">
+                        [ Delete ]
+                    </button>
+
+                </dd>
+
+            </dl>
+        </div>
+    }
+    else
+    {
+        <h3 class="esh-body-sub-title">Item not found</h3>
         <dl class="col-md-6 dl-horizontal">
-            <dt>
-                Name
-            </dt>
-
-            <dd>
-                @_item.Name
-            </dd>
-
-            <dt>
-                Description
-            </dt>
-
-            <dd>
-                @_item.Description
-            </dd>
-
-            <dt>
-                Brand
-            </dt>
-
-            <dd>
-                @{
-                    string catalogBrandName = _item.CatalogBrand != null ? _item.CatalogBrand.Brand : String.Empty;
-                }
-                @catalogBrandName
-            </dd>
-
-            <dt>
-                Type
-            </dt>
-
-            <dd>
-                @{
-                    string catalogTypeName = _item.CatalogType != null ? _item.CatalogType.Type : String.Empty;
-                }
-                @catalogTypeName
-            </dd>
-            <dt>
-                Price
-            </dt>
-
-            <dd>
-                @_item.Price
-            </dd>
-
-            <dt>
-                Picture name
-            </dt>
-
-            <dd>
-                @_item.PictureFileName
-            </dd>
-
-            <dt>
-                Stock
-            </dt>
-
-            <dd>
-                @_item.AvailableStock
-            </dd>
-
-            <dt>
-                Restock
-            </dt>
-
-            <dd>
-                @_item.RestockThreshold
-            </dd>
-
-            <dt>
-                Max stock
-            </dt>
-
-            <dd>
-                @_item.MaxStockThreshold
-            </dd>
-
-            <dt></dt>
-
             <dd class="text-right esh-button-actions">
                 <a href="/" class="btn esh-button esh-button-secondary">
                     [ Cancel ]
                 </a>
-                <button class="btn esh-button esh-button-primary" @onclick="Delete_Click">
-                    [ Delete ]
-                </button>
             </dd>
-
         </dl>
-    </div>
+    }
 </div>
 
 @code {
     [Parameter]
     public int Id { get; set; }
 
-    private CatalogItem _item;
+    private CatalogItem? _item;
 
     protected override void OnInitialized()
     {
@@ -115,7 +131,10 @@
 
     private void Delete_Click()
     {
-        CatalogService.RemoveCatalogItem(_item);
+        if (_item != null)
+        {
+            CatalogService.RemoveCatalogItem(_item);
+        }
 
         NavigationManager.NavigateTo("/");
     }

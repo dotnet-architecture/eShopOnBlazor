@@ -3,9 +3,9 @@ using eShopOnBlazor.ViewModel;
 
 namespace eShopOnBlazor.Services;
 
-public interface ICatalogService : IDisposable
+public interface ICatalogService
 {
-    CatalogItem FindCatalogItem(int id);
+    CatalogItem? FindCatalogItem(int id);
     IEnumerable<CatalogBrand> GetCatalogBrands();
     PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex);
     IEnumerable<CatalogType> GetCatalogTypes();
