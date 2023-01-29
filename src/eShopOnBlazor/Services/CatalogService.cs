@@ -49,7 +49,7 @@ public class CatalogService : ICatalogService
 
     public void CreateCatalogItem(CatalogItem catalogItem)
     {
-        catalogItem.Id = indexGenerator.GetNextSequenceValue(db);
+        catalogItem.Id = indexGenerator.GetNextSequenceValue(db);     
         db.CatalogItems.Add(catalogItem);
         db.SaveChanges();
     }

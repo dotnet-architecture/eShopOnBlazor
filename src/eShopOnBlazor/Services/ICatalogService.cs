@@ -1,7 +1,5 @@
 ﻿using eShopOnBlazor.Models;
 using eShopOnBlazor.ViewModel;
-using System;
-using System.Collections.Generic;
 
 namespace eShopOnBlazor.Services;
 
