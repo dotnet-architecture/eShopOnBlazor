@@ -1,27 +1,25 @@
 ﻿using eShopOnBlazor.Models;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using eShopOnBlazor.ViewModel;
+using System.Data.Entity;
 
 namespace eShopOnBlazor.Services;
 
 public class CatalogService : ICatalogService
 {
-    private CatalogDBContext db;
-    private CatalogItemHiLoGenerator indexGenerator;
+    private readonly CatalogDBContext _dbContext;
+    private readonly CatalogItemHiLoGenerator _indexGenerator;
 
     public CatalogService(CatalogDBContext db, CatalogItemHiLoGenerator indexGenerator)
     {
-        this.db = db;
-        this.indexGenerator = indexGenerator;
+        _dbContext = db;
+        _indexGenerator = indexGenerator;
     }
 
     public PaginatedItemsViewModel<CatalogItem> GetCatalogItemsPaginated(int pageSize, int pageIndex)
     {
-        var totalItems = db.CatalogItems.LongCount();
+        var totalItems = _dbContext.CatalogItems.LongCount();
 
-        var itemsOnPage = db.CatalogItems
+        var itemsOnPage = _dbContext.CatalogItems
             .Include(c => c.CatalogBrand)
             .Include(c => c.CatalogType)
             .OrderBy(c => c.Id)
@@ -33,41 +31,36 @@ public class CatalogService : ICatalogService
             pageIndex, pageSize, totalItems, itemsOnPage);
     }
 
-    public CatalogItem FindCatalogItem(int id)
+    public CatalogItem? FindCatalogItem(int id)
     {
-        return db.CatalogItems.Include(c => c.CatalogBrand).Include(c => c.CatalogType).FirstOrDefault(ci => ci.Id == id);
+        return _dbContext.CatalogItems.Include(c => c.CatalogBrand).Include(c => c.CatalogType).FirstOrDefault(ci => ci.Id == id);
     }
     public IEnumerable<CatalogType> GetCatalogTypes()
     {
-        return db.CatalogTypes.ToList();
+        return _dbContext.CatalogTypes.ToList();
     }
 
     public IEnumerable<CatalogBrand> GetCatalogBrands()
     {
-        return db.CatalogBrands.ToList();
+        return _dbContext.CatalogBrands.ToList();
     }
 
     public void CreateCatalogItem(CatalogItem catalogItem)
     {
-        catalogItem.Id = indexGenerator.GetNextSequenceValue(db);
-        db.CatalogItems.Add(catalogItem);
-        db.SaveChanges();
+        catalogItem.Id = _indexGenerator.GetNextSequenceValue(_dbContext);
+        _dbContext.CatalogItems.Add(catalogItem);
+        _dbContext.SaveChanges();
     }
 
     public void UpdateCatalogItem(CatalogItem catalogItem)
     {
-        db.Entry(catalogItem).State = EntityState.Modified;
-        db.SaveChanges();
+        _dbContext.Entry(catalogItem).State = EntityState.Modified;
+        _dbContext.SaveChanges();
     }
 
     public void RemoveCatalogItem(CatalogItem catalogItem)
     {
-        db.CatalogItems.Remove(catalogItem);
-        db.SaveChanges();
-    }
-
-    public void Dispose()
-    {
-        db.Dispose();
+        _dbContext.CatalogItems.Remove(catalogItem);
+        _dbContext.SaveChanges();
     }
 }

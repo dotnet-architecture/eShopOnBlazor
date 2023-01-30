@@ -119,7 +119,7 @@
 @code {
     int pageSize = 10;
     int pageIndex = 0;
-    PaginatedItemsViewModel<CatalogItem> paginatedCatalogItems;
+    PaginatedItemsViewModel<CatalogItem> paginatedCatalogItems = new PaginatedItemsViewModel<CatalogItem>(0, 10, 0, new CatalogItem[0]);
 
     protected override void OnParametersSet() => LoadPage();
 

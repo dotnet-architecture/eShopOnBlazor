@@ -57,7 +57,7 @@ app.UseEndpoints(endpoints =>
 
 ConfigDataBase(app);
 
-void ConfigDataBase(IApplicationBuilder app)
+static void ConfigDataBase(IApplicationBuilder app)
 {
     using (var scope = app.ApplicationServices.CreateScope())
     {

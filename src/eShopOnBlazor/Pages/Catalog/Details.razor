@@ -5,98 +5,110 @@
 <h2 class="esh-body-title">Details</h2>
 
 <div class="container">
-    <div class="row">
-        <img class="col-md-6 esh-picture" src="@($"/Pics/{_item.PictureFileName}")">
+    @if (_item != null)
+    {
+        <div class="row">
+            <img class="col-md-6 esh-picture" src="@($"/Pics/{_item.PictureFileName}")">
 
-        <dl class="col-md-6 dl-horizontal">
-            <dt>
-                Name
-            </dt>
+            <dl class="col-md-6 dl-horizontal">
+                <dt>
+                    Name
+                </dt>
 
-            <dd>
-                @_item.Name
-            </dd>
+                <dd>
+                    @_item.Name
+                </dd>
 
-            <dt>
-                Description
-            </dt>
+                <dt>
+                    Description
+                </dt>
 
-            <dd>
-                @_item.Description
-            </dd>
+                <dd>
+                    @_item.Description
+                </dd>
 
-            <dt>
-                Brand
-            </dt>
+                <dt>
+                    Brand
+                </dt>
 
-            <dd>
-                @_item.CatalogBrand.Brand
-            </dd>
+                <dd>
+                    @_item.CatalogBrand.Brand
+                </dd>
 
-            <dt>
-                Type
-            </dt>
+                <dt>
+                    Type
+                </dt>
 
-            <dd>
-                @_item.CatalogType.Type
-            </dd>
-            <dt>
-                Price
-            </dt>
+                <dd>
+                    @_item.CatalogType.Type
+                </dd>
+                <dt>
+                    Price
+                </dt>
 
-            <dd>
-                @_item.Price
-            </dd>
+                <dd>
+                    @_item.Price
+                </dd>
 
-            <dt>
-                Picture name
-            </dt>
+                <dt>
+                    Picture name
+                </dt>
 
-            <dd>
-                @_item.PictureFileName
-            </dd>
+                <dd>
+                    @_item.PictureFileName
+                </dd>
 
-            <dt>
-                Stock
-            </dt>
+                <dt>
+                    Stock
+                </dt>
 
-            <dd>
-                @_item.AvailableStock
-            </dd>
+                <dd>
+                    @_item.AvailableStock
+                </dd>
 
-            <dt>
-                Restock
-            </dt>
+                <dt>
+                    Restock
+                </dt>
 
-            <dd>
-                @_item.RestockThreshold
-            </dd>
+                <dd>
+                    @_item.RestockThreshold
+                </dd>
 
-            <dt>
-                Max stock
-            </dt>
+                <dt>
+                    Max stock
+                </dt>
 
-            <dd>
-                @_item.MaxStockThreshold
-            </dd>
+                <dd>
+                    @_item.MaxStockThreshold
+                </dd>
 
-        </dl>
-    </div>
+            </dl>
+        </div>
 
-    <div class="form-actions no-color esh-link-list">
-        <a href="@($"/Catalog/Edit/{_item.Id}")" class="esh-link-item">
-            Edit
-        </a>
-        |
-        <a href="/" class="esh-link-item">
-            Back to list
-        </a>
-    </div>
+        <div class="form-actions no-color esh-link-list">
 
+            <a href="@($"/Catalog/Edit/{_item.Id}")" class="esh-link-item">
+                Edit
+            </a>
+
+            <a href="/" class="esh-link-item">
+                Back to list
+            </a>
+        </div>
+    }
+    else
+    {
+        <h3 class="esh-body-sub-title">Item not found</h3>
+        <div class="form-actions no-color esh-link-list">
+            <a href="/" class="esh-link-item">
+                Back to list
+            </a>
+        </div>
+    }
 </div>
 
 @code {
-    private CatalogItem _item;
+    private CatalogItem? _item;
 
     [Parameter]
     public int Id { get; set; }
