@@ -1,4 +1,4 @@
-using eShopOnBlazor.Models;
+﻿using eShopOnBlazor.Models;
 using eShopOnBlazor.Models.Infrastructure;
 using eShopOnBlazor.Services;
 using log4net;
@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // add services
 
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 if (builder.Configuration.GetValue<bool>("UseMockData"))
 {
@@ -49,11 +49,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapBlazorHub();
-    endpoints.MapFallbackToPage("/_Host");
-});
+app.UseAntiforgery();
+
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
 
 ConfigDataBase(app);
 
