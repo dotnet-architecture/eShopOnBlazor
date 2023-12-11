@@ -1,9 +1,22 @@
-﻿<Router AppAssembly="typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <h1>Page not found</h1>
-        <p>Sorry, but there's nothing here!</p>
-    </NotFound>
-</Router>
+﻿@inject IHostEnvironment Env
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalog manager (Blazor)</title>
+    <base href="/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/base.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+</head>
+<HeadOutlet @rendermode="InteractiveServer" />
+<body>
+    @* <app>@(await Html.RenderComponentAsync<HeadOutlet>(RenderMode.ServerPrerendered))</app> *@
+        <Routes @rendermode="InteractiveServer" />
+
+    <script src="_framework/blazor.web.js"></script>
+</body>
+</html>

@@ -8,4 +8,4 @@ Migration of a traditional ASP.NET Web Forms app to Blazor.
 
 ## Latest Version
 
-This sample has been updated for .NET 7.
+This sample has been updated for .NET 8.
