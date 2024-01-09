@@ -11,12 +11,12 @@
     height: 100%;
 }
 
-    .esh-header:before {
-        content: '';
-        display: inline-block;
-        vertical-align: middle;
-        height: 100%;
-    }
+.esh-header:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
 
 .esh-header-brand {
     max-width: 1440px;
@@ -125,8 +125,9 @@
 }
 
 .esh-picture {
-    max-width: 370px;
+    max-width: 425px;
     height: auto;
+    max-height: 500px;
     width: 100%;
 }
 
@@ -228,6 +229,14 @@
     .esh-pager-item--navigable:hover {
         color: #83D01B;
     }
+
+.form-item-class {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
 @media screen and (max-width: 1280px) {
     .esh-pager-item {
