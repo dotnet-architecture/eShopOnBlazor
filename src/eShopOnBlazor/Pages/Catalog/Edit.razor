@@ -5,7 +5,7 @@
 
 <h2 class="esh-body-title">Edit</h2>
 
-<div>
+<div class="form-item-class">
     @if (_item != null)
     {
         <EditForm Model="_item" OnValidSubmit="@Save_Click">
@@ -13,7 +13,7 @@
 
             <div class="form-group">
                 <label class="control-label col-md-2">Name</label>
-                <div class="col-md-3">
+                <div class="col-md-3 form-control-style">
                     <InputText class="form-control" @bind-Value="_item.Name" />
                     <ValidationMessage For="(() => _item.Name)" />
                 </div>
@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label class="control-label col-md-2">Description</label>
-                <div class="col-md-3">
+                <div class="col-md-3 form-control-style">
                     <InputText class="form-control" @bind-Value="_item.Description" />
                     <ValidationMessage For="(() => _item.Description)" />
                 </div>
@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <label class="control-label col-md-2">Brand</label>
-                <div class="col-md-3">
+                <div class="col-md-3 form-control-style">
                     <InputSelect @bind-Value="_item.CatalogBrandId" class="form-control">
                         @foreach (var brand in _brands)
                         {
@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <label class="control-label col-md-2">Type</label>
-                <div class="col-md-3">
+                <div class="col-md-3 form-control-style">
                     <InputSelect @bind-Value="_item.CatalogTypeId" class="form-control">
                         @foreach (var type in _types)
                         {
@@ -55,22 +55,22 @@
 
             <div class="form-group">
                 <label class="control-label col-md-2">Price</label>
-                <div class="col-md-3">
+                <div class="col-md-3 form-control-style">
                     <InputNumber @bind-Value="_item.Price" class="form-control" />
                     <ValidationMessage For="(() => _item.Price)" />
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2">Picture name</label>
-                <div class="col-md-4 esh-form-information">
+                <label class="control-label col-md-2 form-control-style">Picture name</label>
+                <div class="col-md-4 esh-form-information form-control-style">
                     Uploading images not allowed for this version.
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-md-2">Stock</label>
-                <div class="col-md-3">
+                <div class="col-md-3 form-control-style">
                     <InputNumber @bind-Value="_item.AvailableStock" class="form-control" />
                     <ValidationMessage For="(() => _item.AvailableStock)" />
                 </div>
@@ -85,15 +85,15 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2">Max stock</label>
-                <div class="col-md-3">
+                <label class="control-label col-md-2 form-control-style">Max stock</label>
+                <div class="col-md-3 form-control-style">
                     <InputNumber @bind-Value="_item.MaxStockThreshold" class="form-control" />
                     <ValidationMessage For="(() => _item.MaxStockThreshold)" />
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-3 text-right esh-button-actions">
+                <div class="col-md-offset-2 col-md-3 text-right esh-button-actions form-control-style">
                     <a href="/" class="btn esh-button esh-button-secondary">
                         [ Cancel ]
                     </a>
