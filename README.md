@@ -1,5 +1,7 @@
 # eShopOnBlazor
 
+> eShop sample applications have been updated and moved to https://github.com/dotnet/eShop. Active development will continue there.
+
 Migration of a traditional ASP.NET Web Forms app to Blazor.
 
 ## Read the Book
